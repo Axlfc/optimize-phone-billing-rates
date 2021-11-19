@@ -13,7 +13,7 @@ pagines = pdf_content.split("Página")
 
 # Create telephone list containing sorted phone list
 telephone_list = []
-
+company_telephone_list = []
 for pagina in pagines:
     contingut = pagina.splitlines()
     print("####################################")
@@ -27,12 +27,33 @@ for pagina in pagines:
                 if k.isdigit():
                     if len(k) == 9:
                         telephone_list.append(int(k))
-            print(hola)
+            print("hola")
+            #print(hola)
+            #print("pepe " + str(hola[0]))
+            
+            if not hola:
+                continue
+            else:
+                # print("pepe " + str(hola[0]))
+                # print("La quota mensual del telèfon és " + hola[2] + " " + hola[3])
+                # Identifiquem les línies que contenen els números dels telèfons corporatius
+                if hola[0] == "Telèfon":
+                    if hola[1].isdigit():
+                        if len(hola[1]) == 9:
+                            company_telephone_list.append(int(hola[1]))
+                print(hola)
+                # Identifiquem les línies que contenen la tarifa associada al telèfon
+
+                # Identifiquem les línies que contenen la despesa de dades associada al telèfon
+            
+            print("\n")
     print("########################################")
 
-phone_sorted_list = sorted(str(list(dict.fromkeys(telephone_list))).strip("[").strip("]").replace(" ", "").split(","), reverse=True)
-print(phone_sorted_list)
-for phone_number in phone_sorted_list:
+all_pdf_phone_numbers_sorted_list = sorted(str(list(dict.fromkeys(telephone_list))).strip("[").strip("]").replace(" ", "").split(","), reverse=True)
+# print(phone_sorted_list)
+'''
+for phone_number in company_telephone_list:
     print("Número de telèfon: " + "\t" + str(phone_number))
     print("El telèfon " + str(phone_number) + " té la tarifa...\t" + "TARIFA_X " + "que té un cost de " + "X" + "€")
     print("El mes de " + "X_MES" + " el telèfon " + str(phone_number) + " ha gastat " + "x " + "dades" + "\n\n")
+'''
